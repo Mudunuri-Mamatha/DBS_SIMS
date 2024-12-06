@@ -1,6 +1,6 @@
 
 Smart Inventory Management System (SIMS)
-Overview
+Overview: 
 The Smart Inventory Management System (SIMS) is a web-based application designed to simplify and optimize inventory management. It provides businesses with essential tools to manage inventory, suppliers, orders, warehouses, employees, and customers efficiently. The system is equipped with role-based dashboards tailored for specific users, enabling seamless operations across various functional areas.
 With features like real-time low stock alerts, advanced analytics, profitability analysis, and revenue trends, SIMS serves as a comprehensive solution for managing inventory in a dynamic environment.
 
