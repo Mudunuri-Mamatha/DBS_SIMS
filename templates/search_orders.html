@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Search Orders</h3>
+
+<div style="display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
+    <form method="POST" style="
+        background: white; 
+        padding: 20px; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        width: 100%; 
+        max-width: 600px;
+    ">
+        <div style="margin-bottom: 15px;">
+            <label for="query" style="display: block; margin-bottom: 8px; font-weight: bold; color: #2c3e50;">Search:</label>
+            <input type="text" id="query" name="query" placeholder="Enter status or customer ID" required style="
+                width: 100%; 
+                padding: 10px; 
+                border: 1px solid #ddd; 
+                border-radius: 4px; 
+                font-size: 16px;
+            ">
+        </div>
+        <button type="submit" style="
+            background: #3498db; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 5px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            width: 100%; 
+            text-align: center;
+            transition: background 0.3s;
+        " onmouseover="this.style.background='#2874a6'" onmouseout="this.style.background='#3498db'">Search</button>
+    </form>
+</div>
+{% endblock %}

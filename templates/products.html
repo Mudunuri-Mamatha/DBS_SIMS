@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50;">Product Management</h2>
+
+<!-- Form Section -->
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); margin-bottom: 30px;">
+    <form method="post" action="{{ url_for('products') }}" style="display: grid; gap: 15px;">
+        <input type="text" name="product_name" placeholder="Product Name" required 
+            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <input type="number" name="product_list_price" placeholder="List Price" required 
+            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <input type="number" name="profit" placeholder="Profit" required 
+            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <input type="text" name="product_description" placeholder="Description" 
+            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <input type="number" name="category_id" placeholder="Category ID" required 
+            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <input type="number" name="supplier_id" placeholder="Supplier ID" required 
+            style="padding: 10px; border-radius: 5px; border: 1px solid #ccc; width: 100%;">
+        <button type="submit" style="padding: 10px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Add Product
+        </button>
+    </form>
+</div>
+
+<!-- Table Section -->
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr style="background: #2c3e50; color: white;">
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">ID</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Name</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">List Price</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Profit</th>
+            <th style="padding: 10px; text-align: left; border: 1px solid #ddd;">Description</th>
+            <th style="padding: 10px; text-align: center; border: 1px solid #ddd;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr {% if loop.index0 is divisibleby 2 %}style="background: #f4f7fc;"{% else %}style="background: #fff;"{% endif %}>
+
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ product.Product_ID }}</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ product.Product_Name }}</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ product.Product_list_price }}</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ product.Profit }}</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">{{ product.Product_description }}</td>
+            <td style="padding: 10px; text-align: center; border: 1px solid #ddd;">
+                <a href="{{ url_for('edit_product', id=product.Product_ID) }}" style="color: #27ae60; text-decoration: none; font-weight: bold;">Edit</a>
+                |
+                <a href="{{ url_for('delete_product', id=product.Product_ID) }}" style="color: #e74c3c; text-decoration: none; font-weight: bold;">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

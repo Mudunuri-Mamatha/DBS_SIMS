@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: auto; background: #f4f7fc; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; color: #2c3e50; font-size: 2.5em; margin-bottom: 30px;">Profitability Analysis</h1>
+
+    {% if labels and data %}
+    <div style="width: 80%; margin: auto; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <canvas id="profitChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Prepare chart data from Flask variables
+        const labels = JSON.parse('{{ labels|tojson|safe }}');
+        const data = JSON.parse('{{ data|tojson|safe }}');
+
+        // Configure and render the chart
+        const ctx = document.getElementById('profitChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar', // Change to 'pie' for a pie chart
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Profit ($)',
+                    data: data,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        enabled: true,
+                    },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Profit ($)',
+                            color: '#2c3e50',
+                            font: {
+                                size: 14,
+                                weight: 'bold',
+                            },
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Products',
+                            color: '#2c3e50',
+                            font: {
+                                size: 14,
+                                weight: 'bold',
+                            },
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    {% else %}
+    <p style="text-align: center; color: #2c3e50; font-size: 1.2em;">No profitability data available.</p>
+    {% endif %}
+</div>
+{% endblock %}

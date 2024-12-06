@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 900px; margin: auto; background: #f4f7fc; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #2c3e50; font-size: 2.5em; margin-bottom: 30px;">Admin Dashboard</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+        <!-- Navigation Buttons -->
+        <a href="{{ url_for('products') }}" class="dashboard-button">Manage Products</a>
+        <a href="{{ url_for('customers') }}" class="dashboard-button">Manage Customers</a>
+        <a href="{{ url_for('categories') }}" class="dashboard-button">Manage Categories</a>
+        <a href="{{ url_for('suppliers') }}" class="dashboard-button">Manage Suppliers</a>
+        <a href="{{ url_for('warehouses') }}" class="dashboard-button">Manage Warehouses</a>
+        <a href="{{ url_for('employees') }}" class="dashboard-button">Manage Employees</a>
+        <a href="{{ url_for('orders') }}" class="dashboard-button">Manage Orders</a>
+
+        <!-- Advanced Features -->
+        <a href="{{ url_for('top_products') }}" class="dashboard-button">Top 5 Best-Selling Products</a>
+        <a href="{{ url_for('orders_by_status') }}" class="dashboard-button">Orders by Status</a>
+        <a href="{{ url_for('high_value_orders') }}" class="dashboard-button">High-Value Orders</a>
+        <a href="{{ url_for('revenue_by_month') }}" class="dashboard-button">Revenue by Month</a>
+        <a href="{{ url_for('search_customers') }}" class="dashboard-button">Search Customers</a>
+        <a href="{{ url_for('search_orders') }}" class="dashboard-button">Search Orders</a>
+        <a href="{{ url_for('order_details') }}" class="dashboard-button">Order Details</a>
+        <a href="{{ url_for('total_sales') }}" class="dashboard-button">Total Sales</a>
+        <a href="{{ url_for('low_stock_alerts') }}" class="dashboard-button">Low Stock Alerts</a>
+        <a href="{{ url_for('add_inventory_transaction') }}" class="dashboard-button">Add Inventory Transaction</a>
+        <a href="{{ url_for('revenue_by_month') }}" class="dashboard-button">Revenue Reports</a>
+        <a href="{{ url_for('profitability_analysis') }}" class="dashboard-button">Profitability Analysis</a>
+        <a href="{{ url_for('pending_orders') }}" class="dashboard-button">Pending Orders</a>
+        <a href="{{ url_for('sales_trends') }}" class="dashboard-button">Sales Trends</a>
+    </div>
+</div>
+
+<!-- Include custom CSS -->
+<style>
+    .dashboard-button {
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        display: block;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .dashboard-button:hover {
+        background: #2c81ba;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .dashboard-button:active {
+        background: #1a5a88;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        transform: translateY(0);
+    }
+</style>
+{% endblock %}

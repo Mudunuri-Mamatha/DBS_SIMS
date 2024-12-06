@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50;">Warehouse Management</h2>
+
+<div style="max-width: 600px; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <form method="post" action="{{ url_for('warehouses') }}" style="display: flex; flex-direction: column; gap: 15px;">
+        <label for="warehouse_name" style="font-weight: bold; color: #2c3e50;">Warehouse Name:</label>
+        <input type="text" id="warehouse_name" name="warehouse_name" placeholder="Warehouse Name" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="warehouse_addr" style="font-weight: bold; color: #2c3e50;">Address:</label>
+        <input type="text" id="warehouse_addr" name="warehouse_addr" placeholder="Address" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit" style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Add Warehouse
+        </button>
+    </form>
+</div>
+
+<div style="max-width: 800px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="background: #3498db; color: white;">
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">ID</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Name</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Address</th>
+                <th style="padding: 10px; border-bottom: 2px solid #ddd;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for warehouse in warehouses %}
+            <tr {% if loop.index0 is divisibleby 2 %}style="background: #f4f7fc;"{% else %}style="background: #fff;"{% endif %}>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ warehouse.Warehouse_ID }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ warehouse.Warehouse_Name }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ warehouse.Warehouse_Addr }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                    <a href="{{ url_for('edit_warehouse', id=warehouse.Warehouse_ID) }}" style="color: #3498db; text-decoration: none; font-weight: bold;">Edit</a> |
+                    <a href="{{ url_for('delete_warehouse', id=warehouse.Warehouse_ID) }}" style="color: #e74c3c; text-decoration: none; font-weight: bold;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

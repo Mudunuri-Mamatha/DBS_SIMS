@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50;">Customer Management</h2>
+<div style="max-width: 800px; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <form method="post" action="{{ url_for('customers') }}" style="display: flex; flex-direction: column; gap: 15px;">
+        <label for="cust_name" style="font-weight: bold; color: #2c3e50;">Customer Name:</label>
+        <input type="text" id="cust_name" name="cust_name" placeholder="Customer Name" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="cust_phone" style="font-weight: bold; color: #2c3e50;">Phone Number:</label>
+        <input type="text" id="cust_phone" name="cust_phone" placeholder="Phone Number" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="cust_addr" style="font-weight: bold; color: #2c3e50;">Address:</label>
+        <input type="text" id="cust_addr" name="cust_addr" placeholder="Address" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="cust_email" style="font-weight: bold; color: #2c3e50;">Email:</label>
+        <input type="email" id="cust_email" name="cust_email" placeholder="Email" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="cust_credit_limit" style="font-weight: bold; color: #2c3e50;">Credit Limit:</label>
+        <input type="number" id="cust_credit_limit" name="cust_credit_limit" placeholder="Credit Limit" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit" style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Add Customer
+        </button>
+    </form>
+</div>
+
+<h3 style="text-align: center; margin-top: 40px; color: #2c3e50;">Customer List</h3>
+<table style="width: 100%; border-collapse: collapse; margin: auto; background: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
+    <thead>
+        <tr style="background: #3498db; color: white; text-align: left;">
+            <th style="padding: 10px;">ID</th>
+            <th style="padding: 10px;">Name</th>
+            <th style="padding: 10px;">Phone</th>
+            <th style="padding: 10px;">Address</th>
+            <th style="padding: 10px;">Email</th>
+            <th style="padding: 10px;">Credit Limit</th>
+            <th style="padding: 10px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr {% if loop.index0 is divisibleby 2 %}style="background: #f4f7fc;"{% else %}style="background: #fff;"{% endif %}>
+            <td style="padding: 10px;">{{ customer.Cust_ID }}</td>
+            <td style="padding: 10px;">{{ customer.CustName }}</td>
+            <td style="padding: 10px;">{{ customer.Cust_Phone }}</td>
+            <td style="padding: 10px;">{{ customer.Cust_addr }}</td>
+            <td style="padding: 10px;">{{ customer.Cust_email }}</td>
+            <td style="padding: 10px;">{{ customer.Cust_credit_limit }}</td>
+            <td style="padding: 10px; text-align: center;">
+                <a href="{{ url_for('edit_customer', id=customer.Cust_ID) }}" style="color: #3498db; text-decoration: none; font-weight: bold;">Edit</a> |
+                <a href="{{ url_for('delete_customer', id=customer.Cust_ID) }}" style="color: #e74c3c; text-decoration: none; font-weight: bold;">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

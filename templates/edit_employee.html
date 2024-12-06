@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50;">Edit Employee</h2>
+
+<div style="max-width: 600px; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+        <label style="font-weight: bold; color: #2c3e50;">Employee Name:</label>
+        <input type="text" name="emp_name" value="{{ employee.Emp_Name }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="font-weight: bold; color: #2c3e50;">Email:</label>
+        <input type="email" name="emp_email" value="{{ employee.Emp_Email }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="font-weight: bold; color: #2c3e50;">Phone:</label>
+        <input type="text" name="emp_phone" value="{{ employee.Emp_Phone }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="font-weight: bold; color: #2c3e50;">Hire Date:</label>
+        <input type="date" name="emp_hiredate" value="{{ employee.Emp_hiredate }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="font-weight: bold; color: #2c3e50;">Job Title:</label>
+        <input type="text" name="emp_job_title" value="{{ employee.Emp_job_title }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label style="font-weight: bold; color: #2c3e50;">Warehouse ID:</label>
+        <input type="number" name="warehouse_id" value="{{ employee.Warehouse_ID }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit" 
+                style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Update Employee
+        </button>
+    </form>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{{ url_for('employees') }}" 
+           style="color: #3498db; text-decoration: none; font-weight: bold; font-size: 1rem;">
+            Back to Employees
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: auto; background: #f4f7fc; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center;">
+    <h2 style="color: #2c3e50; font-size: 2.5em; margin-bottom: 20px;">Welcome to the SIMS!</h2>
+    <br><br>
+    <!-- Links to Login/Register -->
+    {% if not session.get('user_id') %}
+    <div style="margin-bottom: 20px;">
+        <a href="{{ url_for('register') }}" 
+           style="margin-right: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Register
+        </a>
+        <a href="{{ url_for('login') }}" 
+           style="padding: 10px 20px; background: #2ecc71; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Login
+        </a>
+    </div>
+    {% else %}
+    <div style="margin-bottom: 20px;">
+        <p style="color: #2c3e50; font-size: 1.2em;">Welcome, <strong>{{ session.get('username') }}</strong> </p>
+        <p> (Role: <strong>{{ session.get('user_role') }}</strong>)</p>
+        <br><br>
+        <a href="{{ url_for('logout') }}" 
+           style="padding: 10px 20px; background: #e74c3c; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Logout
+        </a>
+    </div>
+    {% endif %}
+    <!-- Role-Based Navigation -->
+    <div style="margin-top: 20px;">
+        {% if session.get('user_role') == 'admin' %}
+        <a href="{{ url_for('admin_dashboard') }}" 
+           style="display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Admin Dashboard
+        </a>
+        {% elif session.get('user_role') == 'warehouse' %}
+        <a href="{{ url_for('warehouse_dashboard') }}" 
+           style="display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Warehouse Dashboard
+        </a>
+        {% elif session.get('user_role') == 'sales' %}
+        <a href="{{ url_for('sales_dashboard') }}" 
+           style="display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Sales Dashboard
+        </a>
+        {% elif session.get('user_role') == 'supplier' %}
+        <a href="{{ url_for('supplier_dashboard') }}" 
+           style="display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Supplier Dashboard
+        </a>
+        {% elif session.get('user_role') == 'finance' %}
+        <a href="{{ url_for('finance_dashboard') }}" 
+           style="display: inline-block; margin: 10px; padding: 10px 20px; background: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Finance Dashboard
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50;">Supplier Management</h2>
+
+<div style="max-width: 800px; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <form method="post" action="{{ url_for('suppliers') }}" style="display: flex; flex-direction: column; gap: 15px;">
+        <label for="supplier_name" style="font-weight: bold; color: #2c3e50;">Supplier Name:</label>
+        <input type="text" id="supplier_name" name="supplier_name" placeholder="Supplier Name" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="supplier_contact" style="font-weight: bold; color: #2c3e50;">Contact:</label>
+        <input type="text" id="supplier_contact" name="supplier_contact" placeholder="Contact" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="supplier_rating" style="font-weight: bold; color: #2c3e50;">Rating:</label>
+        <input type="number" id="supplier_rating" name="supplier_rating" placeholder="Rating" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit" style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Add Supplier
+        </button>
+    </form>
+</div>
+
+<div style="max-width: 1000px; margin: 30px auto;">
+    <table style="width: 100%; border-collapse: collapse; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <thead>
+            <tr style="background: #3498db; color: white; text-align: left;">
+                <th style="padding: 10px;">ID</th>
+                <th style="padding: 10px;">Name</th>
+                <th style="padding: 10px;">Contact</th>
+                <th style="padding: 10px;">Rating</th>
+                <th style="padding: 10px;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for supplier in suppliers %}
+            <tr {% if loop.index0 is divisibleby 2 %}style="background: #f4f7fc;"{% else %}style="background: #fff;"{% endif %}>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ supplier.Supplier_ID }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ supplier.Supplier_name }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ supplier.Supplier_contact }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">{{ supplier.Supplier_rating }}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #ddd;">
+                    <a href="{{ url_for('edit_supplier', id=supplier.Supplier_ID) }}" 
+                       style="color: #3498db; text-decoration: none; font-weight: bold;">Edit</a> |
+                    <a href="{{ url_for('delete_supplier', id=supplier.Supplier_ID) }}" 
+                       style="color: #e74c3c; text-decoration: none; font-weight: bold;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

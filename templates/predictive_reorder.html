@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 style="text-align: center;">Predictive Reorder Report</h2>
+<p style="text-align: center;">These products require reordering based on predicted demand.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Reorder Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in reorder_list %}
+        <tr>
+            <td>{{ item.Product_Name }}</td>
+            <td>{{ item.Reorder_Quantity }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{{ url_for('index') }}" class="btn">Back to Dashboard</a>
+{% endblock %}

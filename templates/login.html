@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+<div class="background">
+    <div class="content-container">
+        <h1>Welcome to Smart Inventory Management System (SIMS)!</h1>
+        <p>
+            SIMS is designed to streamline your inventory operations by providing a comprehensive platform to manage all your business needs effectively. Whether it's managing products, suppliers, orders, warehouses, or employees, our system offers a seamless and user-friendly experience.
+        </p>
+        <p>
+            With features like predictive reordering, low stock alerts, profitability analysis, and real-time auditing, SIMS empowers businesses to make smarter decisions backed by data. Analyze top-selling products, monitor sales trends, and track high-value orders effortlessly. The system also provides detailed revenue reports and tools to manage customer and supplier relationships efficiently.
+        </p>
+        <p>
+            Tailored for organizations of all sizes, SIMS ensures smooth operations by integrating functionalities like order tracking, warehouse management, and inventory transactions. Simplify your daily tasks and elevate your business processes with Smart Inventory Management System.
+        </p>
+    </div>
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+        <!-- Flash Messages Section -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <p class="flash-message {{ category }}">{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" class="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>
+            Don't have an account? 
+            <a href="{{ url_for('register') }}">Register here</a>.
+        </p>
+    </div>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 600px; margin: auto; background: #f4f7fc; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #2c3e50; font-size: 2.5em; margin-bottom: 20px;">Add Inventory Transaction</h2>
+
+    <form method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+        <label for="product_id" style="font-weight: bold; color: #2c3e50;">Product:</label>
+        <select name="product_id" id="product_id" required 
+                style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            {% for product in products %}
+            <option value="{{ product.Product_ID }}">{{ product.Product_Name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="quantity" style="font-weight: bold; color: #2c3e50;">Quantity:</label>
+        <input type="number" name="quantity" id="quantity" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="transaction_type" style="font-weight: bold; color: #2c3e50;">Transaction Type:</label>
+        <select name="transaction_type" id="transaction_type" required 
+                style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="Addition">Addition</option>
+            <option value="Removal">Removal</option>
+        </select>
+
+        <button type="submit" 
+                style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Add Transaction
+        </button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h3 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Search Customers</h3>
+
+<div style="max-width: 500px; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+        <label for="query" style="font-weight: bold; color: #2c3e50;">Search:</label>
+        <input 
+            type="text" 
+            id="query" 
+            name="query" 
+            placeholder="Enter name or phone number" 
+            required 
+            style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px;">
+
+        <button 
+            type="submit" 
+            style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+            Search
+        </button>
+    </form>
+</div>
+{% endblock %}

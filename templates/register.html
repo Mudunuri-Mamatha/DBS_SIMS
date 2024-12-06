@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div style="max-width: 600px; margin: auto; background: #f4f7fc; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Register</h2>
+    <form method="POST" action="{{ url_for('register') }}" style="display: flex; flex-direction: column; gap: 20px;">
+        <div>
+            <label for="username" style="font-weight: bold; color: #2c3e50;">Username:</label>
+            <input type="text" id="username" name="username" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div>
+            <label for="password" style="font-weight: bold; color: #2c3e50;">Password:</label>
+            <input type="password" id="password" name="password" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <div>
+            <label for="role" style="font-weight: bold; color: #2c3e50;">Role:</label>
+            <select id="role" name="role" required 
+                    style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; background: #fff;">
+                <option value="admin">Admin</option>
+                <option value="warehouse">Warehouse Staff</option>
+                <option value="sales">Sales Team</option>
+                <option value="supplier">Supplier</option>
+                <option value="finance">Finance Team</option>
+            </select>
+        </div>
+        <button type="submit" 
+                style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px;">
+            Register
+        </button>
+    </form>
+</div>
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{{ url_for('login') }}" 
+       style="color: #3498db; text-decoration: none; font-weight: bold; font-size: 16px;">
+        &larr; Back to Login
+    </a>
+</div>
+{% endblock %}

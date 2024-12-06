@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">Pending Orders</h2>
+
+<div style="max-width: 90%; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <table style="width: 100%; border-collapse: collapse; text-align: left; font-family: Arial, sans-serif;">
+        <thead style="background-color: #3498db; color: white;">
+            <tr>
+                <th style="padding: 10px; border: 1px solid #ddd;">Order ID</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Customer Name</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Product</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Status</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr {% if loop.index0 is divisibleby 2 %}style="background: #f4f7fc;"{% else %}style="background: #fff;"{% endif %}>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.OrderID }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.customer.CustName }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.product.Product_Name }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ order.OrderStatus }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    <form method="POST" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="hidden" name="order_id" value="{{ order.OrderID }}">
+                        <select name="status" style="padding: 5px; border: 1px solid #ccc; border-radius: 5px;">
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                        <button type="submit" 
+                                style="background: #3498db; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                            Update
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

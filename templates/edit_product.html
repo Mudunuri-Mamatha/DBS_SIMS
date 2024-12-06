@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2 style="text-align: center; color: #2c3e50;">Edit Product</h2>
+<div style="max-width: 600px; margin: auto; background: #f4f7fc; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+        <label for="product_name" style="font-weight: bold; color: #2c3e50;">Product Name:</label>
+        <input type="text" id="product_name" name="product_name" value="{{ product.Product_Name }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="product_list_price" style="font-weight: bold; color: #2c3e50;">List Price:</label>
+        <input type="number" id="product_list_price" name="product_list_price" value="{{ product.Product_list_price }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="profit" style="font-weight: bold; color: #2c3e50;">Profit:</label>
+        <input type="number" id="profit" name="profit" value="{{ product.Profit }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="product_description" style="font-weight: bold; color: #2c3e50;">Description:</label>
+        <input type="text" id="product_description" name="product_description" value="{{ product.Product_description }}" 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="category_id" style="font-weight: bold; color: #2c3e50;">Category ID:</label>
+        <input type="number" id="category_id" name="category_id" value="{{ product.Category_ID }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <label for="supplier_id" style="font-weight: bold; color: #2c3e50;">Supplier ID:</label>
+        <input type="number" id="supplier_id" name="supplier_id" value="{{ product.Supplier_ID }}" required 
+               style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+        <button type="submit" style="background: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+            Update
+        </button>
+    </form>
+</div>
+{% endblock %}

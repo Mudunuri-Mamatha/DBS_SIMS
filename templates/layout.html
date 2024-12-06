@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMS</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            flex: 1;
+            text-align: center;
+        }
+
+        .home-icon {
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-icon:hover {
+            color: #f1c40f;
+        }
+
+        .home-icon span {
+            margin-left: 5px;
+            font-size: 1rem;
+        }
+
+        main {
+            width: 90%;
+            margin: auto;
+            margin-top: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            font-size: 14px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Home Icon -->
+        <a href="{{ url_for('index') }}" class="home-icon">
+            &#x1F3E0; <!-- Unicode for home icon -->
+            <span>Home</span>
+        </a>
+        <h1>SIMS Dashboard</h1>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; {{ current_year }} Smart Inventory Management System (SIMS)</p>
+    </footer>
+</body>
+</html>
